@@ -22,12 +22,43 @@ import HelloWorld from "./components/HelloWorld.vue";
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+
+      <ApolloMutation
+        :mutation="
+          (gql) => gql`
+            mutation DoStuff($name: String!) {
+              someWork(name: $name) {
+                success
+                timeSpent
+              }
+            }
+          `
+        "
+        :variables="{
+          name,
+        }"
+        @done="onDone"
+      >
+        <template v-slot="{ mutate, loading, error }">
+          <button :disabled="loading" @click="mutate()">Click me</button>
+          <p v-if="error">An error occurred: {{ error }}</p>
+        </template>
+      </ApolloMutation>
     </div>
   </header>
 
   <RouterView />
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      name: "",
+    };
+  },
+};
+</script>
 <style scoped>
 header {
   line-height: 1.5;
