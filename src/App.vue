@@ -1,8 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
-
 <template>
   <header>
     <img
@@ -44,14 +39,68 @@ import HelloWorld from "./components/HelloWorld.vue";
           <p v-if="error">An error occurred: {{ error }}</p>
         </template>
       </ApolloMutation>
+
+      <button @click="mutate()">VUE APOLLO COMPOSABLE</button>
     </div>
   </header>
 
   <RouterView />
 </template>
 
+<script setup>
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "./components/HelloWorld.vue";
+
+import { useMutation } from "@vue/apollo-composable";
+import gql from "graphql-tag";
+// import { provide } from "vue";
+// import { ApolloClients } from "@vue/apollo-composable";
+import { apolloClient, publicApolloClient } from "@/plugins/graphql";
+console.log("inside app vue -->", apolloClient, publicApolloClient);
+// provide(ApolloClients, {
+//   default: apolloClient,
+//   publicApolloClient,
+// });
+
+const { mutate } = useMutation(
+  gql`
+    mutation DoStuff($name: String!) {
+      someWork(name: $name) {
+        success
+        timeSpent
+      }
+    }
+  `,
+  {
+    clientId: "publicApolloClient",
+    username: "jay",
+  }
+);
+</script>
+
 <script>
+// import { useMutation } from "@vue/apollo-composable";
+// import gql from "graphql-tag";
 export default {
+  // setup() {
+  //   const { mutate } = useMutation(
+  //     gql`
+  //       mutation DoStuff($name: String!) {
+  //         someWork(name: $name) {
+  //           success
+  //           timeSpent
+  //         }
+  //       }
+  //     `,
+  //     {
+  //       username: "jay",
+  //     }
+  //   );
+
+  //   return {
+  //     mutate,
+  //   };
+  // },
   data() {
     return {
       name: "",
