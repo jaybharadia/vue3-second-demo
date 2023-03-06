@@ -10,6 +10,18 @@
     "story:build": "histoire build",
     "story:preview": "histoire preview"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "npx prettier --write .",
+      "eslint --ext .js,.vue src --fix"
+    ]
+  },
   "dependencies": {
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
@@ -20,6 +32,8 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "histoire": "^0.12.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.4",
     "vite": "^4.0.0"
