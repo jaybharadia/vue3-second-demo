@@ -9,6 +9,8 @@ console.log("inside app vue from kashyap  ");
 console.log("inside app vue from kashyap another log with LF line endings ");
 
 console.log("still debugging issue");
+
+console.log("now conveted eol in vscode settings to LF");
 </script>
 
 <template>
