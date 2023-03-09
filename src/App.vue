@@ -6,6 +6,9 @@ console.log("inside app vue ");
 
 console.log("inside app vue from kashyap  ");
 
+console.log("inside app vue from kashyap another log with LF line endings ");
+
+
 </script>
 
 <template>
