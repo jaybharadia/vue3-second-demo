@@ -16,7 +16,9 @@ import HelloWorld from "./components/HelloWorld.vue";
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
+      <h3 class="text-cyan-500 font-mono text-xl font-display">
+        TAILWIND APPLIED
+      </h3>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
