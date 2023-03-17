@@ -1,31 +1,17 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import { ref } from "vue";
+import SideBar from "./components/sidebar/Index.vue";
+
+const showSidebar = ref(true);
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
+  <button class="absolute top-8 left-8 text-lg" @click="showSidebar = true">
+    =
+  </button>
+  <SideBar v-model="showSidebar" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <!-- <RouterView /> -->
 </template>
 
 <style scoped>
