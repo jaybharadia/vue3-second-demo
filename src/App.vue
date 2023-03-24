@@ -1,31 +1,47 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+<script setup lang="ts">
+import { ref, watchEffect } from 'vue'
+import { useDevicesList, useUserMedia} from '@vueuse/core'
+const currentCamera = ref<string>()
+const { videoInputs: cameras } = useDevicesList({
+  requestPermissions: true,
+  onUpdated() {
+    if (!cameras.value.find(i => i.deviceId === currentCamera.value))
+      currentCamera.value = cameras.value[0]?.deviceId
+  },
+})
+const video = ref<HTMLVideoElement>()
+const { stream, enabled,  } = useUserMedia({
+  constraints: { video: { deviceId: currentCamera } },
+})
+watchEffect(() => {
+  if (video.value)
+    video.value.srcObject = stream.value!
+})
 </script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div class="flex flex-col gap-4 text-center">
+    <div>
+      <button @click="enabled = !enabled">
+        {{ enabled ? 'Stop' : 'Start' }}
+      </button>
     </div>
-  </header>
 
-  <RouterView />
+    <div>
+      <div
+        v-for="camera of cameras"
+        :key="camera.deviceId"
+        class="px-2 py-1 cursor-pointer"
+        :class="{ 'text-primary': currentCamera === camera.deviceId }"
+        @click="currentCamera = camera.deviceId"
+      >
+        {{ camera.label }}
+      </div>
+    </div>
+    <div>
+      <video ref="video" muted autoplay controls class="h-100 w-auto" />
+    </div>
+  </div>
 </template>
 
 <style scoped>
