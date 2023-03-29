@@ -1,6 +1,33 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { firebaseApp } from "./service-worker/config";
+
+// Initialize Firebase Cloud Messaging and get a reference to the service
+// const analytics = getAnalytics(app);
+const messaging = getMessaging(firebaseApp);
+
+onMessage(messaging, (payload) => {
+  console.log("Message received. ", payload);
+  // ...
+});
+
+function requestPermission() {
+  console.log("Requesting permission...");
+  Notification.requestPermission().then((permission) => {
+    getToken(messaging, {
+      vapidKey:
+        "BGmhTzvW08xIME7XbxCms_kPKsDFtPwXaMAOlVuXcBwEXTOTmlaq93mfhtrKn_lNXsgI_kcuymmbFLjGm2hhl4Y",
+    });
+    if (permission === "granted") {
+      console.log("Notification permission granted.");
+    }
+  });
+}
+
+requestPermission();
 </script>
 
 <template>
