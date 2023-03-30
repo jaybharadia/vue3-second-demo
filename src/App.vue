@@ -55,6 +55,8 @@ requestPermission();
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
+      <button @click="requestPermission()">Get Notifications</button>
+
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
