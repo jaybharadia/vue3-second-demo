@@ -63,7 +63,7 @@ function requestPermission() {
 
       <button
         @click="requestPermission()"
-        v-if="isNotificationSupported"
+        v-if="isNotificationSupported()"
         class="p-4 bg-blue-300 rounded"
       >
         Get Notifications
