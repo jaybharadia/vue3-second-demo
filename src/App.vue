@@ -8,12 +8,20 @@ import { ref } from "vue";
 
 const deviceToken = ref(null);
 
+const isNotificationSupported = () => {
+  if ("Notification" in window && "requestPermission" in Notification)
+    return true;
+  else return false;
+};
+
 // Initialize Firebase Cloud Messaging and get a reference to the service
 // const analytics = getAnalytics(app);
 const messaging = getMessaging(firebaseApp);
 
 onMessage(messaging, (payload) => {
+  // Handling inApp
   console.log("Message received. ", payload);
+
   // ...
 });
 
@@ -32,8 +40,6 @@ function requestPermission() {
     }
   });
 }
-
-requestPermission();
 </script>
 
 <template>
@@ -55,7 +61,13 @@ requestPermission();
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
-      <button @click="requestPermission()">Get Notifications</button>
+      <button
+        @click="requestPermission()"
+        v-if="isNotificationSupported"
+        class="p-4 bg-blue-300 rounded"
+      >
+        Get Notifications
+      </button>
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
