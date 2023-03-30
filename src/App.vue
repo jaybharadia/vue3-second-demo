@@ -4,6 +4,9 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { firebaseApp } from "./service-worker/config";
+import { ref } from "vue";
+
+const deviceToken = ref(null);
 
 // Initialize Firebase Cloud Messaging and get a reference to the service
 // const analytics = getAnalytics(app);
@@ -20,6 +23,9 @@ function requestPermission() {
     getToken(messaging, {
       vapidKey:
         "BGmhTzvW08xIME7XbxCms_kPKsDFtPwXaMAOlVuXcBwEXTOTmlaq93mfhtrKn_lNXsgI_kcuymmbFLjGm2hhl4Y",
+    }).then((res) => {
+      console.log("device Token response -->", res);
+      deviceToken.value = res;
     });
     if (permission === "granted") {
       console.log("Notification permission granted.");
@@ -39,6 +45,10 @@ requestPermission();
       width="125"
       height="125"
     />
+
+    <div>
+      <p>Device token {{ deviceToken }}</p>
+    </div>
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
