@@ -27,18 +27,18 @@ onMessage(messaging, (payload) => {
 
 function requestPermission() {
   console.log("Requesting permission...");
-  Notification.requestPermission().then((permission) => {
-    getToken(messaging, {
-      vapidKey:
-        "BGmhTzvW08xIME7XbxCms_kPKsDFtPwXaMAOlVuXcBwEXTOTmlaq93mfhtrKn_lNXsgI_kcuymmbFLjGm2hhl4Y",
-    }).then((res) => {
-      console.log("device Token response -->", res);
-      deviceToken.value = res;
-    });
-    if (permission === "granted") {
-      console.log("Notification permission granted.");
-    }
+  // Notification.requestPermission().then((permission) => {
+  getToken(messaging, {
+    vapidKey:
+      "BGmhTzvW08xIME7XbxCms_kPKsDFtPwXaMAOlVuXcBwEXTOTmlaq93mfhtrKn_lNXsgI_kcuymmbFLjGm2hhl4Y",
+  }).then((res) => {
+    console.log("device Token response -->", res);
+    deviceToken.value = res;
   });
+  if (permission === "granted") {
+    console.log("Notification permission granted.");
+  }
+  // });
 }
 </script>
 
@@ -59,15 +59,12 @@ function requestPermission() {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3>Version : 1.4</h3>
+      <h3>Version : 1.5</h3>
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
-      <button
-        @click="requestPermission()"
-        v-if="isNotificationSupported()"
-        class="p-4 bg-blue-300 rounded"
-      >
+      <!-- v-if="isNotificationSupported()" -->
+      <button @click="requestPermission()" class="p-4 bg-blue-300 rounded">
         Get Notifications
       </button>
 
