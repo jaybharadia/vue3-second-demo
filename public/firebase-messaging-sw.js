@@ -33,11 +33,18 @@ if (firebase.messaging.isSupported()) {
     // Customize notification here
     const notificationTitle = payload.notification.title;
     const notificationOptions = {
-      body: "Background Message body.",
+      body: payload.notification.body,
       icon: "/logo.svg",
     };
 
     self.registration.showNotification(notificationTitle, notificationOptions);
   });
 } else {
+  // Support for IOS Safari. Only foreground notification will be received. no background service since it is not supported.
+  self.addEventListener("push", ({ notification }) => {
+    self.registration.showNotification(notification.title, {
+      body: notification.body,
+      icon: "/logo.svg",
+    });
+  });
 }

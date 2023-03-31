@@ -19,9 +19,9 @@ const isNotificationSupported = () => {
 const messaging = getMessaging(firebaseApp);
 
 onMessage(messaging, (payload) => {
-  // Handling inApp
+  // Handling inApp  Notification
   console.log("Message received. ", payload);
-
+  alert(payload.notification.title);
   // ...
 });
 
