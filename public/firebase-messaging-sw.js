@@ -8,6 +8,7 @@ importScripts(
 );
 
 if (firebase.messaging.isSupported()) {
+  console.log("inside Firebase mesaging is Supported merthod ....");
   // Initialize the Firebase app in the service worker by passing in
   // your app's Firebase config object.
   // https://firebase.google.com/docs/web/setup#config-object

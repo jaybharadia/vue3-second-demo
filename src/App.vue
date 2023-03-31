@@ -8,11 +8,11 @@ import { ref } from "vue";
 
 const deviceToken = ref(null);
 
-const isNotificationSupported = () => {
-  if ("Notification" in window && "requestPermission" in Notification)
-    return true;
-  else return false;
-};
+// const isNotificationSupported = () => {
+//   if ("Notification" in window && "requestPermission" in Notification)
+//     return true;
+//   else return false;
+// };
 
 // Initialize Firebase Cloud Messaging and get a reference to the service
 // const analytics = getAnalytics(app);
@@ -35,9 +35,9 @@ function requestPermission() {
     console.log("device Token response -->", res);
     deviceToken.value = res;
   });
-  if (permission === "granted") {
-    console.log("Notification permission granted.");
-  }
+  // if (permission === "granted") {
+  //   console.log("Notification permission granted.");
+  // }
   // });
 }
 </script>
