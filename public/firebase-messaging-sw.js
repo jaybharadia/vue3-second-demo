@@ -42,9 +42,13 @@ if (firebase.messaging.isSupported()) {
 } else {
   // Support for IOS Safari. Only foreground notification will be received. no background service since it is not supported.
   self.addEventListener("push", ({ notification }) => {
-    self.registration.showNotification(notification.title, {
-      body: notification.body,
-      icon: "/logo.svg",
-    });
+    if (self.registration && self.registration.showNotification) {
+      self.registration.showNotification(notification.title, {
+        body: notification.body,
+        icon: "/logo.svg",
+      });
+    } else {
+      alert(notification.title);
+    }
   });
 }
