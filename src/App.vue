@@ -16,7 +16,7 @@ import HelloWorld from "./components/HelloWorld.vue";
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3>Version 5.6</h3>
+      <h3>Version 6.9</h3>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
