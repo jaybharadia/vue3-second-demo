@@ -23,6 +23,11 @@ const router = createRouter({
       props: true,
       component: () => import("../components/user/Index.vue"),
     },
+    {
+      path: "/:catchAll(.*)",
+      component: () => import("../components/NotFound.vue"),
+      name: "NotFound",
+    },
   ],
 });
 
