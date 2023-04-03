@@ -18,6 +18,7 @@ const deviceToken = ref(null);
 // const analytics = getAnalytics(app);
 const messaging = getMessaging(firebaseApp);
 
+console.log("hello>>>>>");
 onMessage(messaging, (payload) => {
   // Handling inApp  Notification
   console.log("Message received. ", payload);
@@ -59,7 +60,7 @@ function requestPermission() {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3>Version : 2.5</h3>
+      <h3>Version : 3.5</h3>
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
