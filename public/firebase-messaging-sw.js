@@ -7,7 +7,6 @@ importScripts(
   "https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"
 );
 
-console.log("inside firebase service worker js ");
 // if (firebase.messaging.isSupported()) {
 console.log("inside Firebase mesaging is Supported merthod ....");
 // Initialize the Firebase app in the service worker by passing in
@@ -54,3 +53,7 @@ messaging.onBackgroundMessage((payload) => {
 //     }
 //   });
 // }
+
+self.addEventListener("push", (event) => {
+  console.log("push event ", event);
+});
