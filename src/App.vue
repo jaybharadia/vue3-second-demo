@@ -27,15 +27,19 @@ onMessage(messaging, (payload) => {
 });
 
 function requestPermission() {
-  console.log("Requesting permission...");
+  console.log("Requesting permission...", getToken);
   // Notification.requestPermission().then((permission) => {
   getToken(messaging, {
     vapidKey:
       "BGmhTzvW08xIME7XbxCms_kPKsDFtPwXaMAOlVuXcBwEXTOTmlaq93mfhtrKn_lNXsgI_kcuymmbFLjGm2hhl4Y",
-  }).then((res) => {
-    console.log("device Token response -->", res);
-    deviceToken.value = res;
-  });
+  })
+    .then((res) => {
+      console.log("device Token response -->", res);
+      deviceToken.value = res;
+    })
+    .catch((error) => {
+      console.log("error-_--->,", error);
+    });
   // if (permission === "granted") {
   //   console.log("Notification permission granted.");
   // }
@@ -60,7 +64,7 @@ function requestPermission() {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3>Version : 3.5</h3>
+      <h3>Version : 5.6</h3>
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
