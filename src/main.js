@@ -12,6 +12,3 @@ app.use(createPinia());
 app.use(router);
 
 app.mount("#app");
-
-console.log("service worker register main js -->", navigator.serviceWorker);
-navigator.serviceWorker.register("/firebase-messaging-sw.js");
