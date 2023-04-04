@@ -64,7 +64,7 @@ function requestPermission() {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3>Version : 10.0</h3>
+      <h3>Version : 11.0</h3>
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
