@@ -8,27 +8,28 @@ import { ref } from "vue";
 
 const deviceToken = ref(null);
 
-// const isNotificationSupported = () => {
-//   if ("Notification" in window && "requestPermission" in Notification)
-//     return true;
-//   else return false;
-// };
+const isNotificationSupported = () => {
+  if ("Notification" in window && "requestPermission" in Notification)
+    return true;
+  else return false;
+};
 
-// Initialize Firebase Cloud Messaging and get a reference to the service
-// const analytics = getAnalytics(app);
-const messaging = getMessaging(firebaseApp);
+console.log("is Notification Supported --->", isNotificationSupported());
 
-console.log("hello>>>>>");
-onMessage(messaging, (payload) => {
-  // Handling inApp  Notification
-  console.log("Message received. ", payload);
-  alert(payload.notification.title);
-  // ...
-});
+const requestPermission = () => {
+  Notification.requestPermission()
+    .then(() => {
+      console.log("Permission Granted success");
+      const messaging = getMessaging(firebaseApp);
+      onPermissionGranted(messaging);
+    })
+    .catch((error) => {
+      console.log("Notification Request Not allowed", error);
+    });
+};
 
-function requestPermission() {
-  console.log("Requesting permission...", getToken);
-  // Notification.requestPermission().then((permission) => {
+const onPermissionGranted = (messaging) => {
+  console.log("inside onPermission Granted method", messaging);
   getToken(messaging, {
     vapidKey:
       "BGmhTzvW08xIME7XbxCms_kPKsDFtPwXaMAOlVuXcBwEXTOTmlaq93mfhtrKn_lNXsgI_kcuymmbFLjGm2hhl4Y",
@@ -36,15 +37,29 @@ function requestPermission() {
     .then((res) => {
       console.log("device Token response -->", res);
       deviceToken.value = res;
+      onMessage(messaging, (payload) => {
+        // Handling inApp  Notification
+        console.log("Message received. ", payload);
+        alert(payload.notification.title);
+        // ...
+      });
     })
     .catch((error) => {
       console.log("error-_--->,", error);
     });
-  // if (permission === "granted") {
-  //   console.log("Notification permission granted.");
-  // }
-  // });
-}
+};
+
+// Initialize Firebase Cloud Messaging and get a reference to the service
+// const analytics = getAnalytics(app);
+
+// function requestPermission() {
+// Notification.requestPermission().then((permission) => {
+
+// if (permission === "granted") {
+//   console.log("Notification permission granted.");
+// }
+// });
+// }
 </script>
 
 <template>
@@ -64,12 +79,15 @@ function requestPermission() {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3>Version : 11.0</h3>
+      <h3>Version : 12.0</h3>
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
-      <!-- v-if="isNotificationSupported()" -->
-      <button @click="requestPermission()" class="p-4 bg-blue-300 rounded">
+      <button
+        v-if="isNotificationSupported()"
+        @click="requestPermission()"
+        class="p-4 bg-blue-300 rounded"
+      >
         Get Notifications
       </button>
 
