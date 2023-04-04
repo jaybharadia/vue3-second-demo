@@ -19,12 +19,14 @@ console.log("is Notification Supported --->", isNotificationSupported());
 const requestPermission = () => {
   Notification.requestPermission()
     .then((permission) => {
-      console.log("Permission Granted success");
       if (permission === "granted") {
+        console.log("Permission Granted success");
         const messaging = getMessaging(firebaseApp);
         onPermissionGranted(messaging);
       } else if (permission === "denied") {
-        alert("Please allow notification permission");
+        alert(
+          "Please allow notification permission by visiting browser settings."
+        );
       }
     })
     .catch((error) => {
