@@ -18,13 +18,17 @@ console.log("is Notification Supported --->", isNotificationSupported());
 
 const requestPermission = () => {
   Notification.requestPermission()
-    .then(() => {
+    .then((permission) => {
       console.log("Permission Granted success");
-      const messaging = getMessaging(firebaseApp);
-      onPermissionGranted(messaging);
+      if (permission === "granted") {
+        const messaging = getMessaging(firebaseApp);
+        onPermissionGranted(messaging);
+      } else if (permission === "denied") {
+        alert("Please allow notification permission");
+      }
     })
     .catch((error) => {
-      console.log("Notification Request Not allowed", error);
+      console.log("Notification API ERROR", error);
     });
 };
 
@@ -79,7 +83,7 @@ const onPermissionGranted = (messaging) => {
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
-      <h3>Version : 12.0</h3>
+      <h3>Version : 13.0</h3>
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
