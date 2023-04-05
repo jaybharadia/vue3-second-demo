@@ -1,10 +1,28 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+// import { RouterLink, RouterView } from "vue-router";
+// import HelloWorld from "./components/HelloWorld.vue";
+import { ref } from "vue";
+import SuspenseBase from "./components/suspense/Index.vue";
+import AsyncComponent from "./components/AsyncComponent.vue";
+
+const color = ref("red");
 </script>
 
 <template>
-  <header>
+  <SuspenseBase>
+    <template #default>
+      <AsyncComponent />
+    </template>
+    <template #fallback>
+      <h4>Loading....</h4>
+    </template>
+    <template #error="{ error }">
+      <h2 class="error">Failed to Load {{ error }}</h2>
+    </template>
+  </SuspenseBase>
+
+  <button @click="color = 'purple'">Update Color</button>
+  <!-- <header>
     <img
       alt="Vue logo"
       class="logo"
@@ -23,15 +41,19 @@ import HelloWorld from "./components/HelloWorld.vue";
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
-  <RouterView />
+  <!-- <RouterView /> -->
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+
+.error {
+  color: v-bind(color);
 }
 
 .logo {
