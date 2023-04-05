@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import ProvideUserSettings from "./provide/ProvideUserSettings.js";
 </script>
 
 <template>
@@ -13,16 +14,18 @@ import HelloWorld from "./components/HelloWorld.vue";
       height="125"
     />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+    <ProvideUserSettings>
+      <div class="wrapper">
+        <HelloWorld msg="You did it!" />
 
-      <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
+        <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+        <nav>
+          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </nav>
+      </div>
+    </ProvideUserSettings>
   </header>
 
   <RouterView />

@@ -1,15 +1,32 @@
 <script setup>
+import { inject } from "vue";
+import { UserSettingsStateSymbol } from "../provide/ProvideUserSettings";
+import { UserSettingsUpdateSymbol } from "../provide/ProvideUserSettings";
+
 defineProps({
   msg: {
     type: String,
     required: true,
   },
 });
+
+const { theme } = inject(UserSettingsStateSymbol);
+
+const updateUserSettings = inject(UserSettingsUpdateSymbol);
+const updateTheme = (value) => updateUserSettings("theme", value);
+
+console.log("theme-->", theme);
 </script>
 
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
+
+    <h4>THeme is {{ theme }}</h4>
+
+    <button @click="updateTheme('dark')">Enable darkmode</button>
+    <button @click="updateTheme('light')">Enable lightmode</button>
+
     <h3>
       You’ve successfully created a project with
       <span class="text-red-500">YESSSSSSSSS</span>
