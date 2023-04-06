@@ -18,6 +18,12 @@ import HelloWorld from "./components/HelloWorld.vue";
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
+      <button
+        @click="$router.push({ name: 'user-profile', params: { id: 32 } })"
+      >
+        Navigate
+      </button>
+
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
