@@ -1,10 +1,18 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import Filter from "./components/Filter.vue";
 </script>
 
 <template>
   <header>
+    <Filter
+      :filterItem="{
+        age: null,
+        type: '',
+      }"
+    />
+
     <img
       alt="Vue logo"
       class="logo"

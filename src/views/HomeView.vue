@@ -1,9 +1,16 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import Filter from "../components/Filter.vue";
+// import TheWelcome from "../components/TheWelcome.vue";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Filter
+      :filterItem="{
+        age: null,
+        type: '',
+      }"
+    />
+    <!-- <TheWelcome /> -->
   </main>
 </template>
