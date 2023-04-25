@@ -1,6 +1,62 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+
+// import { ref } from "vue";
+// import { useInfiniteScroll } from "@vueuse/core";
+
+// const el = ref < HTMLElement > null;
+// const data = ref([1, 2, 3, 4, 5, 6]);
+
+// console.log("el-->", el);
+// const inf = useInfiniteScroll(
+//   el,
+//   () => {
+//     // load more
+
+//     console.log("inside infiinte scroll");
+//     data.value.push(...moreData);
+//   }
+//   // { distance: 10 }
+// );
+
+// console.log("infintie--scroll", inf);
+</script>
+
+<script>
+import { useInfiniteScroll } from "@vueuse/core";
+
+export default {
+  data() {
+    return {
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    };
+  },
+  mounted() {
+    console.log("refs-->", this.$refs.el);
+    const inf = useInfiniteScroll(
+      this.$refs.el,
+      (callbackRes) => {
+        console.log(
+          "🚀 ~ file: App.vue:49 ~ mounted ~ callbackRes:",
+          callbackRes
+        );
+
+        // load more
+
+        console.log("inside infiinte scroll");
+        // this.items.push(...this.items);
+      }
+      // { distance: 10 }
+    );
+    console.log("🚀 ~ file: App.vue:47 ~ mounted ~ inf:", inf);
+  },
+  methods: {
+    loadMore() {
+      console.log("inside load more");
+    },
+  },
+};
 </script>
 
 <template>
@@ -24,11 +80,20 @@ import HelloWorld from "./components/HelloWorld.vue";
       </nav>
     </div>
   </header>
+  <div ref="el" class="infinite-scroll" v-infinite-scroll="loadMore">
+    <div v-for="item in items">
+      {{ item }}
+    </div>
+  </div>
 
-  <RouterView />
+  <!-- <RouterView /> -->
 </template>
 
 <style scoped>
+.infinite-scroll {
+  max-height: 90px;
+  overflow-y: scroll;
+}
 header {
   line-height: 1.5;
   max-height: 100vh;

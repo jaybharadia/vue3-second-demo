@@ -11,8 +11,10 @@
     "story:preview": "histoire preview"
   },
   "dependencies": {
+    "@vueuse/core": "^10.1.0",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
+    "vue-infinite-scroll": "^2.0.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
