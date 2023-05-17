@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
@@ -14,8 +14,9 @@ import HelloWorld from "./components/HelloWorld.vue";
     />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <!-- <HelloWorld msg="You did it!" /> -->
 
+      <DHello msg="YESSSSSS" />
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
       <nav>
