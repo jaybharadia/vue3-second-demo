@@ -12,6 +12,7 @@ export default defineConfig({
       base: "/",
       srcDir: "src",
       filename: "sw.ts",
+      registerType: 'autoUpdate',
       includeAssets: ["/favicon.png"],
       strategies: "injectManifest",
       manifest: {
