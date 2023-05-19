@@ -17,7 +17,7 @@ import HelloWorld from "./components/HelloWorld.vue";
     {{ version }}
 
     <div class="wrapper">
-      <!-- <HelloWorld msg="You did it!" /> -->
+      <HelloWorld msg="You did it!" />
 
       <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
 
