@@ -11,10 +11,10 @@ export default defineConfig({
     VitePWA({
       base: "/",
       srcDir: "src",
-      filename: "sw.ts",
+      // filename: "sw.ts",
       registerType: 'autoUpdate',
       includeAssets: ["/favicon.png"],
-      strategies: "injectManifest",
+      strategies: "generateSW",
       manifest: {
         name: "DateDish",
         short_name: "DateDish",
