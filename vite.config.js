@@ -10,7 +10,8 @@ export default defineConfig({
         vue(),
         VitePWA({
             workbox: {
-                cleanupOutdatedCaches: false,
+                cleanupOutdatedCaches: true,
+                skipWaiting: true,
             },
             base: "/",
             srcDir: "src",
