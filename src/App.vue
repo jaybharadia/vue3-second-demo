@@ -17,7 +17,7 @@ import ReloadPrompt from "./ReloadPrompt.vue";
         VERSION ->
         {{ version }}
 
-        <!-- <div class="wrapper">
+        <div class="wrapper">
             <HelloWorld msg="You did it!" />
 
             <h3 class="text-cyan-500 font-mono text-xl">
@@ -28,7 +28,7 @@ import ReloadPrompt from "./ReloadPrompt.vue";
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/about">About</RouterLink>
             </nav>
-        </div> -->
+        </div>
     </header>
 
     <!-- <RouterView /> -->
