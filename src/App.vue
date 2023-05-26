@@ -2,6 +2,7 @@
 import { version } from "../package.json";
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import ReloadPrompt from "./ReloadPrompt.vue";
 </script>
 
 <template>
@@ -19,7 +20,9 @@ import HelloWorld from "./components/HelloWorld.vue";
         <div class="wrapper">
             <HelloWorld msg="You did it!" />
 
-            <h3 class="text-cyan-500 font-mono text-xl">TAILWIND APPLIED</h3>
+            <h3 class="text-cyan-500 font-mono text-xl">
+                TAILWIND APPLIED YESSSSSS
+            </h3>
 
             <nav>
                 <RouterLink to="/">Home</RouterLink>
@@ -29,6 +32,8 @@ import HelloWorld from "./components/HelloWorld.vue";
     </header>
 
     <!-- <RouterView /> -->
+
+    <ReloadPrompt />
 </template>
 
 <style scoped>
