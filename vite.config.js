@@ -9,6 +9,9 @@ export default defineConfig({
     plugins: [
         vue(),
         VitePWA({
+            workbox: {
+                cleanupOutdatedCaches: false,
+            },
             base: "/",
             srcDir: "src",
             // filename: "sw.ts",
