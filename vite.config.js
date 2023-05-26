@@ -11,8 +11,9 @@ export default defineConfig({
         VitePWA({
             workbox: {
                 cleanupOutdatedCaches: true,
-                skipWaiting: true,
+                // skipWaiting: true,
             },
+            registerType: "prompt",
             base: "/",
             srcDir: "src",
             // filename: "sw.ts",

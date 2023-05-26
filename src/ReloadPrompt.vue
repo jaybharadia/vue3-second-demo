@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRegisterSW } from "virtual:pwa-register/vue";
-import { onMounted } from "vue";
 const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW();
 console.log(
     "🚀 ~ file: ReloadPrompt.vue:9 ~ updateServiceWorker:",
@@ -16,6 +15,11 @@ const close = async () => {
 </script>
 
 <template>
+    <div>
+        Need to refresh {{ needRefresh }}
+
+        Offline ready {{ offlineReady }}
+    </div>
     <div v-if="offlineReady || needRefresh" class="pwa-toast" role="alert">
         <div class="message">
             <span v-if="offlineReady"> App ready to work offline </span>
