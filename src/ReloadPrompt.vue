@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRegisterSW } from "virtual:pwa-register/vue";
-
+import { onMounted } from "vue";
 const { offlineReady, needRefresh, updateServiceWorker } = useRegisterSW();
 console.log(
     "🚀 ~ file: ReloadPrompt.vue:9 ~ updateServiceWorker:",
@@ -13,6 +13,11 @@ const close = async () => {
     offlineReady.value = false;
     needRefresh.value = false;
 };
+
+onMounted(() => {
+    console.log("inside mounted hoook ");
+    updateServiceWorker();
+});
 </script>
 
 <template>
