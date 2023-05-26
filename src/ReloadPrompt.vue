@@ -13,11 +13,6 @@ const close = async () => {
     offlineReady.value = false;
     needRefresh.value = false;
 };
-
-onMounted(() => {
-    console.log("inside mounted hoook ");
-    updateServiceWorker();
-});
 </script>
 
 <template>
