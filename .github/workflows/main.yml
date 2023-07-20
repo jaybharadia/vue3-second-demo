@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: kentaro-m/task-completed-checker-action@v0.1.2
         with:
-          repo-token: "$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"
+          repo-token: "ghdeS34@"
