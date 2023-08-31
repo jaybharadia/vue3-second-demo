@@ -1,7 +1,7 @@
 <script setup>
-import Accordion from "./components/accordion.vue";
+import Rewards from "./components/rewards.vue";
 </script>
 
 <template>
-    <Accordion />
+    <Rewards />
 </template>
