@@ -23,7 +23,6 @@
 let card;
 const APP_ID = "sandbox-sq0idb-RT3u-HhCpNdbMiGg5aXuVg";
 const LOCATION_ID = "TC4Z3ZEBKRXRH";
-import { processPayment } from "@/utilities/square.js";
 export default {
     data() {
         return {
@@ -38,17 +37,16 @@ export default {
     methods: {
         async handlePaymentMethodSubmission() {
             const token = await this.tokenize();
-            // const { data, error } = await axios("/api/pay", {
-            //     method: "POST",
-            //     headers: {
-            //         "content-type": "application/json",
-            //     },
-            //     body: {
-            //         locationId: LOCATION_ID,
-            //         sourceId: token,
-            //     },
-            // });
-            processPayment(LOCATION_ID, token);
+            const { data, error } = await axios("/api/pay", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: {
+                    locationId: LOCATION_ID,
+                    sourceId: token,
+                },
+            });
         },
         async tokenize() {
             try {
