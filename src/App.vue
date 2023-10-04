@@ -1,11 +1,13 @@
 <script setup>
-import DirectusRest from "./components/directus-rest.vue";
-import DirectusGraphql from "./components/directus-graphql.vue";
+// import DirectusRest from "./components/directus-rest.vue";
+// import DirectusGraphql from "./components/directus-graphql.vue";
+import DirectusFile from "./components/directus-file.vue";
 </script>
 
 <template>
-    <DirectusRest />
-    <DirectusGraphql />
+    <!-- <DirectusRest /> -->
+    <!-- <DirectusGraphql /> -->
+    <DirectusFile />
 </template>
 
 <style scoped>

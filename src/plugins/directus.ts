@@ -2,8 +2,10 @@ import { createDirectus, rest  } from "@directus/sdk";
 import { graphql } from '@directus/sdk/graphql';
 
 import gql from 'gql-tag'
+const endpoint = import.meta.env.VITE_APP_DIRECTUS_ENDPOINT;
 
 const install = ( app ) => {
+
 
     interface Pages {
         id: string;
@@ -15,10 +17,8 @@ const install = ( app ) => {
         sw_pages: Pages[];
     }
     
-    const restClient = createDirectus("https://products.7span.in").with(rest());
-    const graphqlClient = createDirectus('https://products.7span.in').with(graphql());
-    console.log("🚀 ~ file: directus.ts:17 ~ install ~ graphqlClient:", graphqlClient)
-
+    const restClient = createDirectus(endpoint).with(rest());
+    const graphqlClient = createDirectus(endpoint).with(graphql());
     const query = gql`
     query {
         sw_pages {
@@ -27,7 +27,7 @@ const install = ( app ) => {
         }
     }`;
 
-    graphqlClient.query(query);
+    // graphqlClient.query(query);
     
     
     app.provide("$rest", restClient);
