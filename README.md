@@ -2,6 +2,13 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
+Official Portal to manage and track events
+- [Link Here](https://www.facebook.com/events_manager2/list/pixel)
+
+Steps to integrate in your project
+- Replace index.html meta pixel id with yours
+- check in portal and see events 
+
 ### Checking push
 
 ### CHecking facebook pixel access
