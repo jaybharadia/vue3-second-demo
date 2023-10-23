@@ -1,10 +1,11 @@
 <template>
-    <div>
-        Upload File
-        <input type="file" @input="upload" />
+    <div class="flex gap-8 flex-wrap">
+        <div class="w-[800px] h-[1200px]">
+            <img id="image" src="/images/events/tech-round-23.png" />
+        </div>
 
         <div>
-            <img id="image" src="/me.jpg" />
+            <img :src="cropped" />
         </div>
     </div>
 </template>
@@ -13,8 +14,15 @@
 import { uploadFiles } from "@directus/sdk";
 import Cropper from "cropperjs";
 
+import "cropperjs/dist/cropper.css";
+
 export default {
     inject: ["$rest"],
+    data() {
+        return {
+            cropped: null,
+        };
+    },
     mounted() {
         const image = document.getElementById("image");
 
@@ -27,40 +35,28 @@ export default {
         );
 
         const cropper = new Cropper(image, {
-            autoCrop: false,
             // zoomable: false,
-            aspectRatio: 16 / 9,
+            // aspectRatio: 16 / 9,
+            viewMode: 1,
+            cropBoxResizable: false,
+            autoCropArea: 1.0,
+            zoomable: false,
             crop(event) {
-                cropper.getCroppedCanvas().toBlob(async function (blob) {
-                    console.log(
-                        "🚀 ~ file: directus-file.vue:32 ~ cropper.getCroppedCanvas ~ blob:",
-                        this
-                    );
+                console.log(
+                    "🚀 ~ file: directus-file.vue:48 ~ crop ~ event:",
+                    event
+                );
 
-                    const formData = new FormData();
-
-                    formData.append("file", blob);
-
-                    const result = await _this.$rest.request(
-                        uploadFiles(formData)
-                    );
-                    console.log(
-                        "🚀 ~ file: directus-file.vue:28 ~ upload ~ result:",
-                        result
-                    );
-                });
-
-                console.log(event.detail.x);
-                console.log(event.detail.y);
-                console.log(event.detail.width);
-                console.log(event.detail.height);
-                console.log(event.detail.rotate);
-                console.log(event.detail.scaleX);
-                console.log(event.detail.scaleY);
+                _this.cropped = cropper.getCroppedCanvas().toDataURL();
+                console.log(
+                    "🚀 ~ file: directus-file.vue:54 ~ crop ~ this.cropped:",
+                    this.cropped
+                );
             },
         });
     },
     methods: {
+        handleCrop() {},
         async upload(event) {
             console.log(
                 "🚀 ~ file: directus-file.vue:12 ~ upload ~ file:",
