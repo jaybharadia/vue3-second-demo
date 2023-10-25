@@ -1,7 +1,16 @@
-<script setup>
-import Accordion from "./components/accordion.vue";
+<script>
+// import Accordion from "./components/accordion.vue";
+export default {
+    methods: {
+        trigger() {
+            acEnableConversionTracking();
+        },
+    },
+};
 </script>
 
 <template>
-    <Accordion />
+    <!-- <Accordion /> -->
+
+    <button @click="trigger">Trigger Conversion</button>
 </template>
