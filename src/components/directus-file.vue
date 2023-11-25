@@ -1,11 +1,12 @@
 <template>
     <div class="flex gap-8 flex-wrap">
-        <div class="w-[800px] h-[1200px]">
-            <img id="image" src="/images/events/tech-round-23.png" />
+        <div class="w-[400px] h-[300px]">
+            <img id="image" src="/google-io.jpeg" />
         </div>
 
-        <div>
-            <img :src="cropped" />
+        <div id="preview" class="w-[400px] h-[300px]" style="overflow: hidden">
+            <!-- <img :src="cropped" /> -->
+            <!-- <img  /> -->
         </div>
     </div>
 </template>
@@ -38,8 +39,12 @@ export default {
             // zoomable: false,
             // aspectRatio: 16 / 9,
             viewMode: 1,
+            // dragMode: "move",
             cropBoxResizable: false,
-            autoCropArea: 1.0,
+            // autoCropArea: 0.5,
+            preview: "#preview",
+            modal: true,
+            background: false,
             zoomable: false,
             crop(event) {
                 console.log(
@@ -48,10 +53,6 @@ export default {
                 );
 
                 _this.cropped = cropper.getCroppedCanvas().toDataURL();
-                console.log(
-                    "🚀 ~ file: directus-file.vue:54 ~ crop ~ this.cropped:",
-                    this.cropped
-                );
             },
         });
     },
